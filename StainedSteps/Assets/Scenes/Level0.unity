@@ -229,6 +229,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
@@ -274,8 +275,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpVal: 0
   isGrounded: 0
+  fallDepth: -5
 --- !u!54 &304528017
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -363,7 +364,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 304528015}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.18, y: 1.17, z: -8.25}
+  m_LocalPosition: {x: -4.52, y: 1.06, z: -6.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 201029651}
@@ -709,7 +710,7 @@ Transform:
   m_GameObject: {fileID: 2064173141}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.9724, y: 3.9724, z: 3.9724}
+  m_LocalScale: {x: 2.1916525, y: 2.1916525, z: 2.1916525}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
