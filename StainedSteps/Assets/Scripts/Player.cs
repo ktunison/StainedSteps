@@ -15,12 +15,12 @@ public class Player : MonoBehaviour
 
     private int lives = 3;
     private int fallDepth;
-    private Vector3 startPos;
+    private Vector3 spawnPos;
 
     // Start is called before the first frame update
     void Start()
     {
-        startPos = transform.position;
+        spawnPos = transform.position;
         rigidbody = GetComponent<Rigidbody>();
     }
 
