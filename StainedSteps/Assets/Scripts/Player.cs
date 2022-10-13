@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -14,6 +16,10 @@ public class Player : MonoBehaviour
     private int lives = 3;
     public int fallDepth;
     private Vector3 spawnPos;
+
+    private float CoinCount = 0;
+    public Text coinsText;
+
 
     // Start is called before the first frame update
     void Start()
@@ -75,5 +81,24 @@ public class Player : MonoBehaviour
         }
 
         GetComponent<MeshRenderer>().enabled = true;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Coin")
+        {
+            other.gameObject.SetActive(false);
+            CoinCount++;
+        }
+
+        if (other.tag == "Exit")
+        {
+            SceneSwitch.instance.switchScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
+
+    public void setCountText()
+    {
+        
     }
 }
