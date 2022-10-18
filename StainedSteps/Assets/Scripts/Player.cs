@@ -14,17 +14,30 @@ public class Player : MonoBehaviour
     private bool isGrounded;
 
     private int lives = 3;
+    public Text livesText;
+    private float CoinCount = 0;
+    public Text coinsText;
+    public Text gameOverText;
+    public Text winText;
+
     public int fallDepth;
     private Vector3 spawnPos;
 
-    private float CoinCount = 0;
-    public Text coinsText;
+    private int currentLevel;
+    private int nextLevel;
 
+    private int[] levels = { SceneManager.GetActiveScene().buildIndex, SceneManager.GetActiveScene().buildIndex + 1, SceneManager.GetActiveScene().buildIndex + 2, SceneManager.GetActiveScene().buildIndex + 3 };
+
+    //We might want a ground zero level where there are no puzzles so before you enter the tower the levels can be randomized
+    //That way I can grab the first build number then randomize and delete the rest as we go to properly track progress
 
     // Start is called before the first frame update
     void Start()
     {
         spawnPos = transform.position;
+        currentLevel = SceneManager.GetActiveScene().buildIndex;
+        levels.Equals
+
     }
 
     // Update is called once per frame
@@ -99,6 +112,17 @@ public class Player : MonoBehaviour
 
     public void setCountText()
     {
-        
+        coinsText.text = "Coins: " + CoinCount.ToString();
+        livesText.text = "lives: " + lives.ToString();
+
+        if (lives <= 0)
+        {
+            gameOverText.text = "GAME OVER";
+        }
+    }
+
+    private void randomNextLevel()
+    {
+
     }
 }
