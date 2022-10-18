@@ -26,7 +26,8 @@ public class Player : MonoBehaviour
     private int currentLevel;
     private int nextLevel;
 
-    private int[] levels = { SceneManager.GetActiveScene().buildIndex, SceneManager.GetActiveScene().buildIndex + 1, SceneManager.GetActiveScene().buildIndex + 2, SceneManager.GetActiveScene().buildIndex + 3 };
+    //make a list with ints instead
+    private List<int> levels;
 
     //We might want a ground zero level where there are no puzzles so before you enter the tower the levels can be randomized
     //That way I can grab the first build number then randomize and delete the rest as we go to properly track progress
@@ -36,7 +37,6 @@ public class Player : MonoBehaviour
     {
         spawnPos = transform.position;
         currentLevel = SceneManager.GetActiveScene().buildIndex;
-        levels.Equals
 
     }
 
