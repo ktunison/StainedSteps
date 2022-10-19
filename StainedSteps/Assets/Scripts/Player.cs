@@ -37,7 +37,9 @@ public class Player : MonoBehaviour
     {
         spawnPos = transform.position;
         currentLevel = SceneManager.GetActiveScene().buildIndex;
-
+        setCountText();
+        winText.text = "";
+        gameOverText.text = "";
     }
 
     // Update is called once per frame
@@ -102,6 +104,7 @@ public class Player : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             CoinCount++;
+            setCountText();
         }
 
         if (other.tag == "Exit")
