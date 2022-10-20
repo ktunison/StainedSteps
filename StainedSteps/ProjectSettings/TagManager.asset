@@ -7,6 +7,10 @@ TagManager:
   - Exit
   - Coin
   - Enemy
+  - Door
+  - Moving Platform
+  - Spawn
+  - Entrance
   layers:
   - Default
   - TransparentFX
