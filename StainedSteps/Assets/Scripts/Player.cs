@@ -10,9 +10,6 @@ public class Player : MonoBehaviour
     public float speed = 10f;
     private Vector3 inputMovement;
 
-    [SerializeField]
-    private bool isGrounded;
-
     private int lives = 3;
     public Text livesText;
     private float CoinCount = 0;
@@ -22,6 +19,11 @@ public class Player : MonoBehaviour
 
     public int fallDepth;
     private Vector3 spawnPos;
+
+    public float jumpForce;
+    [SerializeField]
+    private bool isGrounded;
+    private Rigidbody rigidBody;
 
     private int currentLevel;
     private int nextLevel;
@@ -40,12 +42,30 @@ public class Player : MonoBehaviour
         setCountText();
         winText.text = "";
         gameOverText.text = "";
+        rigidBody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Move();
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position - new Vector3(0, transform.position.y, 0), transform.TransformDirection(Vector3.down), out hit, 2.1f))
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+
+        //Jumping using space key
+        if (Input.GetKey("space") && isGrounded)
+        {
+            rigidBody.AddForce(Vector3.up * jumpForce);
+        }
     }
 
     //actually moves the player from the WASD function and will respawn the player if they fall too far
