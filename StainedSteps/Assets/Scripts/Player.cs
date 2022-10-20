@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
     {
         transform.position = spawnPos;
         lives--;
+        setCountText();
 
         if (lives <= 0)
         {
