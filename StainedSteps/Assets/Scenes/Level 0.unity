@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 27746490}
   m_Layer: 0
   m_Name: PlayerHolder
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1416,6 +1416,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5486282731913138778, guid: a06720d6b610cbb4da2c6560b78e5bfd, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5486282731913138779, guid: a06720d6b610cbb4da2c6560b78e5bfd, type: 3}
       propertyPath: m_Name
       value: Exit
@@ -1526,6 +1530,42 @@ PrefabInstance:
       value: character
       objectReference: {fileID: 0}
     - target: {fileID: 6367028672866908479, guid: 1e15ca9141f9d9c4eb6168fffc6a2170, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6367028672923541610, guid: 1e15ca9141f9d9c4eb6168fffc6a2170, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6367028673100499104, guid: 1e15ca9141f9d9c4eb6168fffc6a2170, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6367028673375450822, guid: 1e15ca9141f9d9c4eb6168fffc6a2170, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6367028673765302211, guid: 1e15ca9141f9d9c4eb6168fffc6a2170, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6367028673899185321, guid: 1e15ca9141f9d9c4eb6168fffc6a2170, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6367028674210589520, guid: 1e15ca9141f9d9c4eb6168fffc6a2170, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6367028674312023222, guid: 1e15ca9141f9d9c4eb6168fffc6a2170, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6367028674567385796, guid: 1e15ca9141f9d9c4eb6168fffc6a2170, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6367028674641979054, guid: 1e15ca9141f9d9c4eb6168fffc6a2170, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
