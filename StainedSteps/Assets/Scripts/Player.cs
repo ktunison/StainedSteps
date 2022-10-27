@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
     private int currentLevel;
     private int nextLevel;
 
+    private float playerYValue;
+
     //make a list with ints instead
     private List<int> levels;
 
@@ -43,6 +45,7 @@ public class Player : MonoBehaviour
         winText.text = "";
         gameOverText.text = "";
         rigidBody = GetComponent<Rigidbody>();
+        playerYValue = this.transform.position.y;
     }
 
     // Update is called once per frame
@@ -52,9 +55,12 @@ public class Player : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position - new Vector3(0, transform.position.y, 0), transform.TransformDirection(Vector3.down), out hit, 2.1f))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 5f))
         {
-            isGrounded = true;
+            if (!(hit.collider.tag == "Player"))
+            {
+                isGrounded = true;
+            }
         }
         else
         {
