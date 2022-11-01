@@ -11,6 +11,7 @@ TagManager:
   - Moving Platform
   - Spawn
   - Entrance
+  - Jetpack
   layers:
   - Default
   - TransparentFX
