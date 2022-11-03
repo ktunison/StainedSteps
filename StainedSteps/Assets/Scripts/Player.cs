@@ -22,7 +22,8 @@ public class Player : MonoBehaviour
 
     public float jumpForce;
     [SerializeField]
-    private bool isGrounded;
+    private bool isGrounded = true;
+    private float distToGround = 1.1f;
     private Rigidbody rigidBody;
 
     private int currentLevel;
@@ -53,9 +54,12 @@ public class Player : MonoBehaviour
     {
         Move();
 
+        //Debug.Log(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), distToGround));
+
+        
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 5f))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, distToGround))
         {
             if (!(hit.collider.tag == "Player"))
             {
@@ -66,6 +70,7 @@ public class Player : MonoBehaviour
         {
             isGrounded = false;
         }
+       
 
         //Jumping using space key
         if (Input.GetKey("space") && isGrounded)
@@ -73,6 +78,24 @@ public class Player : MonoBehaviour
             rigidBody.AddForce(Vector3.up * jumpForce);
         }
     }
+
+    /*
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject)
+        {
+            isGrounded = true;
+        }
+    }
+    
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            isGrounded = false;
+        }
+    }
+    */
 
     //actually moves the player from the WASD function and will respawn the player if they fall too far
     private void Move()

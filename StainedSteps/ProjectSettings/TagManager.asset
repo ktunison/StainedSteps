@@ -12,6 +12,7 @@ TagManager:
   - Spawn
   - Entrance
   - Jetpack
+  - Ground
   layers:
   - Default
   - TransparentFX
