@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     public float jumpForce;
     [SerializeField]
-    private bool isGrounded = true;
+    private bool isGrounded;
     private float distToGround = 1.1f;
     private Rigidbody rigidBody;
 
@@ -71,6 +71,12 @@ public class Player : MonoBehaviour
             isGrounded = false;
         }
        
+        /*
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+
+        }
+        */
 
         //Jumping using space key
         if (Input.GetKey("space") && isGrounded)

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9047585659187872573}
   m_Layer: 0
   m_Name: Jetpack
-  m_TagString: Untagged
+  m_TagString: Jetpack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
