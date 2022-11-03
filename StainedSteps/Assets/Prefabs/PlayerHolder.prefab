@@ -477,6 +477,10 @@ MonoBehaviour:
   fallDepth: -5
   jumpForce: 250
   isGrounded: 0
+  maxFuel: 2.5
+  jetpackForce: 0.5
+  currentFuel: 0
+  hasJetpack: 0
 --- !u!114 &3389874023136626679
 MonoBehaviour:
   m_ObjectHideFlags: 0

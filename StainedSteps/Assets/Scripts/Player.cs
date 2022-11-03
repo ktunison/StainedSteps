@@ -31,6 +31,13 @@ public class Player : MonoBehaviour
     //make a list with ints instead
     private List<int> levels;
 
+    public float maxFuel = 2.5f;
+    public float jetpackForce = .5f;
+    [SerializeField]
+    private float currentFuel;
+    [SerializeField]
+    private bool hasJetpack = false;
+
     //We might want a ground zero level where there are no puzzles so before you enter the tower the levels can be randomized
     //That way I can grab the first build number then randomize and delete the rest as we go to properly track progress
 
@@ -43,6 +50,7 @@ public class Player : MonoBehaviour
         winText.text = "";
         gameOverText.text = "";
         rigidBody = GetComponent<Rigidbody>();
+        currentFuel = maxFuel;
     }
 
     // Update is called once per frame
@@ -79,8 +87,18 @@ public class Player : MonoBehaviour
         {
             rigidBody.AddForce(Vector3.up * jumpForce);
         }
-        
-        if (Input.GetKey(KeyCode.LeftShift))
+        else if (Input.GetKey("space") && hasJetpack && currentFuel > 0f)
+        {
+            currentFuel -= Time.deltaTime;
+            rigidBody.AddForce(rigidBody.transform.up * jetpackForce, ForceMode.Impulse);
+        }
+
+        if (isGrounded && currentFuel < maxFuel)
+        {
+            currentFuel += Time.deltaTime;
+        }
+
+            if (Input.GetKey(KeyCode.LeftShift))
         {
             speed = sprintSpeed;
         }
@@ -171,6 +189,12 @@ public class Player : MonoBehaviour
         if (other.tag == "Exit")
         {
             SceneSwitch.instance.switchScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+
+        if (other.tag == "Jetpack")
+        {
+            other.gameObject.SetActive(false);
+            hasJetpack = true;
         }
     }
 
