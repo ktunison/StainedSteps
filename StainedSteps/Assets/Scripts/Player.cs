@@ -26,11 +26,6 @@ public class Player : MonoBehaviour
     private float distToGround = 1.1f;
     private Rigidbody rigidBody;
 
-    private int currentLevel;
-    private int nextLevel;
-
-    private float playerYValue;
-
     //make a list with ints instead
     private List<int> levels;
 
@@ -41,12 +36,10 @@ public class Player : MonoBehaviour
     void Start()
     {
         spawnPos = transform.position;
-        currentLevel = SceneManager.GetActiveScene().buildIndex;
         setCountText();
         winText.text = "";
         gameOverText.text = "";
         rigidBody = GetComponent<Rigidbody>();
-        playerYValue = this.transform.position.y;
     }
 
     // Update is called once per frame
