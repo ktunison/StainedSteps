@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed;
     private Vector3 inputMovement;
 
     private int lives = 3;
@@ -82,6 +82,15 @@ public class Player : MonoBehaviour
         if (Input.GetKey("space") && isGrounded)
         {
             rigidBody.AddForce(Vector3.up * jumpForce);
+        }
+        
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = 12f;
+        }
+        else
+        {
+            speed = 5f;
         }
     }
 
