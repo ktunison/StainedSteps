@@ -36,7 +36,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float currentFuel;
     [SerializeField]
-    private bool hasJetpack = false;
+    private bool hasJetpack;
+    [SerializeField]
+    private int keyCount;
 
     //We might want a ground zero level where there are no puzzles so before you enter the tower the levels can be randomized
     //That way I can grab the first build number then randomize and delete the rest as we go to properly track progress
@@ -44,6 +46,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        keyCount = 0;
         speed = normalSpeed;
         spawnPos = transform.position;
         setCountText();
@@ -195,6 +198,18 @@ public class Player : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             hasJetpack = true;
+        }
+
+        if (other.tag == "Key")
+        {
+            other.gameObject.SetActive(false);
+            keyCount++;
+        }
+
+        if (other.tag == "Door" && keyCount > 0)
+        {
+            other.gameObject.SetActive(false);
+            keyCount--;
         }
     }
 

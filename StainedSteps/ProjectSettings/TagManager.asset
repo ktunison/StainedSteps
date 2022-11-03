@@ -13,6 +13,7 @@ TagManager:
   - Entrance
   - Jetpack
   - Ground
+  - Key
   layers:
   - Default
   - TransparentFX
