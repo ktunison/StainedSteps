@@ -468,7 +468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43470af6f96e6894d8e38db47af28e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  normalSpeed: 5
+  sprintSpeed: 12
   livesText: {fileID: 804280427009185448}
   coinsText: {fileID: 804280426249389166}
   gameOverText: {fileID: 804280425654217883}

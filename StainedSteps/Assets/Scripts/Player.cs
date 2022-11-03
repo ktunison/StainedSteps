@@ -7,7 +7,9 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public float speed;
+    private float speed;
+    public float normalSpeed;
+    public float sprintSpeed;
     private Vector3 inputMovement;
 
     private int lives = 3;
@@ -35,6 +37,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        speed = normalSpeed;
         spawnPos = transform.position;
         setCountText();
         winText.text = "";
@@ -79,11 +82,11 @@ public class Player : MonoBehaviour
         
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            speed = 12f;
+            speed = sprintSpeed;
         }
         else
         {
-            speed = 5f;
+            speed = normalSpeed;
         }
     }
 
