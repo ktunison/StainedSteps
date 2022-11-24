@@ -40,8 +40,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int keyCount;
 
-
-
     //We might want a ground zero level where there are no puzzles so before you enter the tower the levels can be randomized
     //That way I can grab the first build number then randomize and delete the rest as we go to properly track progress
 
@@ -58,13 +56,14 @@ public class Player : MonoBehaviour
         currentFuel = maxFuel;
     }
 
-
     // Update is called once per frame
     void FixedUpdate()
     {
         Move();
+
+        //Debug.Log(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), distToGround));
+
         
-        // uses the ray cast to determine if the player is touching the ground or not
         RaycastHit hit;
 
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, distToGround))
@@ -78,39 +77,57 @@ public class Player : MonoBehaviour
         {
             isGrounded = false;
         }
+       
+        /*
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
 
+        }
+        */
 
-        
-        if (Input.GetKey("space") && isGrounded) //Jumping using space key
+        //Jumping using space key
+        if (Input.GetKey("space") && isGrounded)
         {
             rigidBody.AddForce(Vector3.up * jumpForce);
         }
-        else if (Input.GetKey("space") && hasJetpack && currentFuel > 0f) // Holding Space to use the jetpack
+        else if (Input.GetKey("space") && hasJetpack && currentFuel > 0f)
         {
             currentFuel -= Time.deltaTime;
             rigidBody.AddForce(rigidBody.transform.up * jetpackForce, ForceMode.Impulse);
         }
 
-        if (!Input.GetKey("space") && currentFuel < maxFuel)
-        {
-            currentFuel += Time.deltaTime/3;
-        }
-        
         if (isGrounded && currentFuel < maxFuel)
         {
             currentFuel += Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) && isGrounded)
+            if (Input.GetKey(KeyCode.LeftShift))
         {
             speed = sprintSpeed;
         }
-        
-        if (!Input.GetKey(KeyCode.LeftShift))
+        else
         {
             speed = normalSpeed;
         }
     }
+
+    /*
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject)
+        {
+            isGrounded = true;
+        }
+    }
+    
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            isGrounded = false;
+        }
+    }
+    */
 
     //actually moves the player from the WASD function and will respawn the player if they fall too far
     private void Move()
