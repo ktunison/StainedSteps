@@ -28,9 +28,6 @@ public class Player : MonoBehaviour
     private float distToGround = 1.1f;
     private Rigidbody rigidBody;
 
-    //make a list with ints instead
-    private List<int> levels;
-
     public float maxFuel = 2.5f;
     public float jetpackForce = .5f;
     [SerializeField]
@@ -77,13 +74,6 @@ public class Player : MonoBehaviour
         {
             isGrounded = false;
         }
-       
-        /*
-        if (SceneManager.GetActiveScene().buildIndex == 1)
-        {
-
-        }
-        */
 
         //Jumping using space key
         if (Input.GetKey("space") && isGrounded)
@@ -101,7 +91,7 @@ public class Player : MonoBehaviour
             currentFuel += Time.deltaTime;
         }
 
-            if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             speed = sprintSpeed;
         }
@@ -110,24 +100,6 @@ public class Player : MonoBehaviour
             speed = normalSpeed;
         }
     }
-
-    /*
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject)
-        {
-            isGrounded = true;
-        }
-    }
-    
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            isGrounded = false;
-        }
-    }
-    */
 
     //actually moves the player from the WASD function and will respawn the player if they fall too far
     private void Move()
@@ -222,10 +194,5 @@ public class Player : MonoBehaviour
         {
             gameOverText.text = "GAME OVER";
         }
-    }
-
-    private void randomNextLevel()
-    {
-
     }
 }
