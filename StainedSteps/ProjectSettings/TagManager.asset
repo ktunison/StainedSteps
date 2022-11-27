@@ -14,6 +14,7 @@ TagManager:
   - Jetpack
   - Ground
   - Key
+  - Camera
   layers:
   - Default
   - TransparentFX

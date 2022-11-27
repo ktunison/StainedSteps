@@ -7,9 +7,6 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    private float speed;
-    public float normalSpeed;
-    public float sprintSpeed;
     private Vector3 inputMovement;
 
     private int lives = 3;
@@ -28,10 +25,10 @@ public class Player : MonoBehaviour
     private float distToGround = 1.1f;
     private Rigidbody rigidBody;
 
-    public float maxFuel = 2.5f;
+    public float maxFuel = .75f;
     public float jetpackForce = .5f;
     [SerializeField]
-    private float currentFuel;
+    private float currentFuel = .75f;
     [SerializeField]
     private bool hasJetpack;
     [SerializeField]
@@ -44,7 +41,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         keyCount = 0;
-        speed = normalSpeed;
         spawnPos = transform.position;
         setCountText();
         winText.text = "";
@@ -56,7 +52,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Move();
+        //Move();
 
         //Debug.Log(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), distToGround));
 
@@ -74,6 +70,7 @@ public class Player : MonoBehaviour
         {
             isGrounded = false;
         }
+        
 
         //Jumping using space key
         if (Input.GetKey("space") && isGrounded)
@@ -91,25 +88,17 @@ public class Player : MonoBehaviour
             currentFuel += Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            speed = sprintSpeed;
-        }
-        else
-        {
-            speed = normalSpeed;
-        }
-    }
-
-    //actually moves the player from the WASD function and will respawn the player if they fall too far
-    private void Move()
-    {
-        transform.Translate(inputMovement * speed * Time.deltaTime);
-
         if (transform.position.y < fallDepth)
         {
             Respawn();
         }
+    }
+
+    /*
+    //actually moves the player from the WASD function and will respawn the player if they fall too far
+    private void Move()
+    {
+        transform.Translate(inputMovement * speed * Time.deltaTime);
     }
 
     //uses the input action to figure out what key is being pressed and then adds a value to the player based off of that to move the player around in the game.
@@ -118,6 +107,7 @@ public class Player : MonoBehaviour
         Vector2 myVector = context.ReadValue<Vector2>();
         inputMovement = new Vector3(myVector.x, 0, myVector.y);
     }
+    */
 
     //Will bring the player back to the spawn position that was instantiated at the beginning of the level
     private void Respawn()
