@@ -19,23 +19,14 @@ public class Player : MonoBehaviour
     public int fallDepth;
     private Vector3 spawnPos;
 
-    public float jumpForce;
+    
     [SerializeField]
     private bool isGrounded;
     private float distToGround = 1.1f;
-    private Rigidbody rigidBody;
-
-    public float maxFuel = .75f;
-    public float jetpackForce = .5f;
-    [SerializeField]
-    private float currentFuel = .75f;
-    [SerializeField]
-    private bool hasJetpack;
+    
     [SerializeField]
     private int keyCount;
 
-    //We might want a ground zero level where there are no puzzles so before you enter the tower the levels can be randomized
-    //That way I can grab the first build number then randomize and delete the rest as we go to properly track progress
 
     // Start is called before the first frame update
     void Start()
@@ -45,18 +36,14 @@ public class Player : MonoBehaviour
         setCountText();
         winText.text = "";
         gameOverText.text = "";
-        rigidBody = GetComponent<Rigidbody>();
-        currentFuel = maxFuel;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         //Move();
-
-        //Debug.Log(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), distToGround));
-
         
+        /*
         RaycastHit hit;
 
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, distToGround))
@@ -70,23 +57,8 @@ public class Player : MonoBehaviour
         {
             isGrounded = false;
         }
+        */
         
-
-        //Jumping using space key
-        if (Input.GetKey("space") && isGrounded)
-        {
-            rigidBody.AddForce(Vector3.up * jumpForce);
-        }
-        else if (Input.GetKey("space") && hasJetpack && currentFuel > 0f)
-        {
-            currentFuel -= Time.deltaTime;
-            rigidBody.AddForce(rigidBody.transform.up * jetpackForce, ForceMode.Impulse);
-        }
-
-        if (isGrounded && currentFuel < maxFuel)
-        {
-            currentFuel += Time.deltaTime;
-        }
 
         if (transform.position.y < fallDepth)
         {
@@ -154,12 +126,6 @@ public class Player : MonoBehaviour
         if (other.tag == "Exit")
         {
             SceneSwitch.instance.switchScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-
-        if (other.tag == "Jetpack")
-        {
-            other.gameObject.SetActive(false);
-            hasJetpack = true;
         }
 
         if (other.tag == "Key")

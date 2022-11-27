@@ -18,13 +18,24 @@ public class PlayerController : MonoBehaviour
     private float normalSpeed;
     private float sprintSpeed;
 
+    private Rigidbody rigidBody;
+    private float jumpForce = 2;
+    public float maxFuel = .75f;
+    public float jetpackForce = .5f;
+    [SerializeField]
+    private float currentFuel = .75f;
+    [SerializeField]
+    private bool hasJetpack;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        rigidBody = GetComponent<Rigidbody>();
         inputManager = InputManager.Instance;
         cameraTransform = Camera.main.transform;
         normalSpeed = playerSpeed;
         sprintSpeed = playerSpeed * 2;
+        currentFuel = maxFuel;
     }
 
     void Update()
@@ -61,5 +72,26 @@ public class PlayerController : MonoBehaviour
         {
             playerSpeed = normalSpeed;
         }
+
+        if (Input.GetKey("space") && hasJetpack && currentFuel > 0f)
+        {
+            currentFuel -= Time.deltaTime;
+            playerVelocity.y += Mathf.Sqrt(.005f * -3.0f * gravityValue);
+        }
+
+        if (groundedPlayer && currentFuel < maxFuel)
+        {
+            currentFuel += Time.deltaTime;
+        }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Jetpack")
+        {
+            other.gameObject.SetActive(false);
+            hasJetpack = true;
+        }
+    }
+
 }
