@@ -19,13 +19,21 @@ public class PlayerController : MonoBehaviour
     private float sprintSpeed;
 
     private Rigidbody rigidBody;
-    private float jumpForce = 2;
-    public float maxFuel = .75f;
+    //private float jumpForce = 2;
+    [SerializeField]
+    private float maxJPFuel = .75f;
     public float jetpackForce = .5f;
     [SerializeField]
-    private float currentFuel = .75f;
+    private float currentJPFuel = .75f;
     [SerializeField]
     private bool hasJetpack;
+
+    [SerializeField]
+    private float maxRunFuel = 2f;
+    [SerializeField]
+    private float currentRunFuel = 2f;
+    [SerializeField]
+    private bool hasRun;
 
     private void Start()
     {
@@ -35,7 +43,7 @@ public class PlayerController : MonoBehaviour
         cameraTransform = Camera.main.transform;
         normalSpeed = playerSpeed;
         sprintSpeed = playerSpeed * 2;
-        currentFuel = maxFuel;
+        currentJPFuel = maxJPFuel;
     }
 
     void Update()
@@ -64,24 +72,30 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && hasRun && currentRunFuel > 0f)
         {
+            currentRunFuel -= Time.deltaTime;
             playerSpeed = sprintSpeed;
         }
-        else
+        else if (!Input.GetKey(KeyCode.LeftShift))
         {
             playerSpeed = normalSpeed;
         }
 
-        if (Input.GetKey("space") && hasJetpack && currentFuel > 0f)
+        if (!Input.GetKey(KeyCode.LeftShift) && currentRunFuel < maxRunFuel)
         {
-            currentFuel -= Time.deltaTime;
+            currentRunFuel += Time.deltaTime;
+        }
+
+        if (Input.GetKey("space") && hasJetpack && currentJPFuel > 0f)
+        {
+            currentJPFuel -= Time.deltaTime;
             playerVelocity.y += Mathf.Sqrt(.005f * -3.0f * gravityValue);
         }
 
-        if (groundedPlayer && currentFuel < maxFuel)
+        if (groundedPlayer && currentJPFuel < maxJPFuel)
         {
-            currentFuel += Time.deltaTime;
+            currentJPFuel += Time.deltaTime;
         }
     }
 
@@ -91,6 +105,24 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             hasJetpack = true;
+        }
+        
+        if (other.tag == "Run")
+        {
+            other.gameObject.SetActive(false);
+            hasRun = true;
+        }
+
+        if (other.tag == "Coin")
+        {
+            if (currentJPFuel < maxJPFuel)
+            {
+                currentJPFuel += .05f;
+            }
+            if (currentRunFuel < maxRunFuel)
+            {
+                currentRunFuel += .05f;
+            }
         }
     }
 

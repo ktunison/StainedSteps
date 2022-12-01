@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    private Vector3 inputMovement;
+    //private Vector3 inputMovement;
 
     private int lives = 3;
     public Text livesText;
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     
     [SerializeField]
     private bool isGrounded;
-    private float distToGround = 1.1f;
+    //private float distToGround = 1.1f;
     
     [SerializeField]
     private int keyCount;
@@ -69,21 +69,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    /*
-    //actually moves the player from the WASD function and will respawn the player if they fall too far
-    private void Move()
-    {
-        transform.Translate(inputMovement * speed * Time.deltaTime);
-    }
-
-    //uses the input action to figure out what key is being pressed and then adds a value to the player based off of that to move the player around in the game.
-    public void WASD(InputAction.CallbackContext context)
-    {
-        Vector2 myVector = context.ReadValue<Vector2>();
-        inputMovement = new Vector3(myVector.x, 0, myVector.y);
-    }
-    */
-
     //Will bring the player back to the spawn position that was instantiated at the beginning of the level
     private void Respawn()
     {
@@ -100,27 +85,6 @@ public class Player : MonoBehaviour
         }
         //StartCoroutine(Blink());
     }
-
-    /*
-    //turns on and off the meshRenderer to give the feeling that you have started anew (blinks half the amount of times of the < # for the index (i) integer)
-    public IEnumerator Blink()
-    {
-        for (int i = 0; i < 24; i++)
-        {
-            if (i % 2 == 0)
-            {
-                GetComponent<MeshRenderer>().enabled = false;
-            }
-            else
-            {
-                GetComponent<MeshRenderer>().enabled = true;
-            }
-            yield return new WaitForSeconds(.1f);
-        }
-
-        GetComponent<MeshRenderer>().enabled = true;
-    }
-    */
 
     public void OnTriggerEnter(Collider other)
     {
@@ -164,4 +128,40 @@ public class Player : MonoBehaviour
             gameOverText.text = "GAME OVER";
         }
     }
+
+    /*
+//turns on and off the meshRenderer to give the feeling that you have started anew (blinks half the amount of times of the < # for the index (i) integer)
+public IEnumerator Blink()
+{
+    for (int i = 0; i < 24; i++)
+    {
+        if (i % 2 == 0)
+        {
+            GetComponent<MeshRenderer>().enabled = false;
+        }
+        else
+        {
+            GetComponent<MeshRenderer>().enabled = true;
+        }
+        yield return new WaitForSeconds(.1f);
+    }
+
+    GetComponent<MeshRenderer>().enabled = true;
+}
+*/
+
+    /*
+        //actually moves the player from the WASD function and will respawn the player if they fall too far
+        private void Move()
+        {
+            transform.Translate(inputMovement * speed * Time.deltaTime);
+        }
+
+        //uses the input action to figure out what key is being pressed and then adds a value to the player based off of that to move the player around in the game.
+        public void WASD(InputAction.CallbackContext context)
+        {
+            Vector2 myVector = context.ReadValue<Vector2>();
+            inputMovement = new Vector3(myVector.x, 0, myVector.y);
+        }
+    */
 }

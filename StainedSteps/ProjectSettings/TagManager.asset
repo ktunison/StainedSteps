@@ -16,6 +16,7 @@ TagManager:
   - Key
   - Camera
   - Spike
+  - Run
   layers:
   - Default
   - TransparentFX
