@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int keyCount;
 
+    private PlayerController pCont;
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +38,7 @@ public class Player : MonoBehaviour
         setCountText();
         winText.text = "";
         gameOverText.text = "";
+        pCont = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -84,13 +87,16 @@ public class Player : MonoBehaviour
     //Will bring the player back to the spawn position that was instantiated at the beginning of the level
     private void Respawn()
     {
-        transform.position = spawnPos;
+        GetComponent<CharacterController>().enabled = false;
+        gameObject.transform.position = spawnPos;
+        GetComponent<CharacterController>().enabled = true;
         lives--;
         setCountText();
 
         if (lives <= 0)
         {
             this.enabled = false;
+            pCont.enabled = false;
         }
         //StartCoroutine(Blink());
     }
