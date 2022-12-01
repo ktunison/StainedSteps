@@ -92,9 +92,10 @@ public class Player : MonoBehaviour
         {
             this.enabled = false;
         }
-        StartCoroutine(Blink());
+        //StartCoroutine(Blink());
     }
 
+    /*
     //turns on and off the meshRenderer to give the feeling that you have started anew (blinks half the amount of times of the < # for the index (i) integer)
     public IEnumerator Blink()
     {
@@ -113,6 +114,7 @@ public class Player : MonoBehaviour
 
         GetComponent<MeshRenderer>().enabled = true;
     }
+    */
 
     public void OnTriggerEnter(Collider other)
     {
@@ -138,6 +140,11 @@ public class Player : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             keyCount--;
+        }
+
+        if (other.tag == "Spike")
+        {
+            Respawn();
         }
     }
 

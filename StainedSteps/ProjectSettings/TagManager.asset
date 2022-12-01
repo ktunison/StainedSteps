@@ -15,6 +15,7 @@ TagManager:
   - Ground
   - Key
   - Camera
+  - Spike
   layers:
   - Default
   - TransparentFX
