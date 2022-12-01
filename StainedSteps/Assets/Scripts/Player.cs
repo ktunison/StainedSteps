@@ -41,6 +41,12 @@ public class Player : MonoBehaviour
         pCont = GetComponent<PlayerController>();
     }
 
+    //Checkpoint
+    public void Checkpoint()
+    {
+        OnTriggerEnter
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {

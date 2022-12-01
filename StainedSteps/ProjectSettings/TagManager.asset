@@ -17,6 +17,7 @@ TagManager:
   - Camera
   - Spike
   - Run
+  - CheckPoint
   layers:
   - Default
   - TransparentFX
