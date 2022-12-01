@@ -41,12 +41,6 @@ public class Player : MonoBehaviour
         pCont = GetComponent<PlayerController>();
     }
 
-    //Checkpoint
-    public void Checkpoint()
-    {
-        OnTriggerEnter
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -124,6 +118,13 @@ public class Player : MonoBehaviour
         if (other.tag == "Spike")
         {
             Respawn();
+        }
+
+        if (other.tag == "CheckPoint")
+        {
+            spawnPos = other.transform.position;
+            other.gameObject.SetActive(false);
+            //Respawn();
         }
     }
 
