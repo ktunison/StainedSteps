@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Platform Level.unity
     guid: 599ac54189d38484d8bc619e62f67350
+  - enabled: 1
+    path: Assets/Scenes/Jetpack.unity
+    guid: ca2659e06b33f53429775160e4766476
   m_configObjects: {}
