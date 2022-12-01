@@ -106,10 +106,13 @@ public class Player : MonoBehaviour
             keyCount++;
         }
 
-        if (other.tag == "Door" && keyCount > 0)
+        if (other.tag == "Door")
         {
-            other.gameObject.SetActive(false);
-            keyCount--;
+            if (other.gameObject.GetComponent<Door>().requiredKeys <= keyCount)
+            {
+                other.gameObject.SetActive(false);
+                keyCount -= other.gameObject.GetComponent<Door>().requiredKeys;
+            }
         }
 
         if (other.tag == "Spike")
