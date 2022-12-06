@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public Text livesText;
     private float CoinCount = 0;
     public Text coinsText;
+    public Text keyText;
     public Text gameOverText;
     public Text winText;
 
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
         spawnPos = transform.position;
         setCountText();
         winText.text = "";
+        keyText.text = "";
         gameOverText.text = "";
         pCont = GetComponent<PlayerController>();
     }
@@ -104,6 +106,7 @@ public class Player : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             keyCount++;
+            keyText.text = "Keys: " + keyCount.ToString();
         }
 
         if (other.tag == "Door")

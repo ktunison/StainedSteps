@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
@@ -18,20 +19,23 @@ public class PlayerController : MonoBehaviour
     private float normalSpeed;
     private float sprintSpeed;
 
+    public Text runFuelText;
+    public Text jetFuelText;
+
     private Rigidbody rigidBody;
     //private float jumpForce = 2;
     [SerializeField]
-    private float maxJPFuel = .75f;
+    private float maxJPFuel = .8f;
     public float jetpackForce = .5f;
     [SerializeField]
-    private float currentJPFuel = .75f;
+    private float currentJPFuel = .8f;
     [SerializeField]
     private bool hasJetpack;
 
     [SerializeField]
-    private float maxRunFuel = 2f;
+    private float maxRunFuel = 3f;
     [SerializeField]
-    private float currentRunFuel = 2f;
+    private float currentRunFuel = 3f;
     [SerializeField]
     private bool hasRun;
 
@@ -42,8 +46,10 @@ public class PlayerController : MonoBehaviour
         inputManager = InputManager.Instance;
         cameraTransform = Camera.main.transform;
         normalSpeed = playerSpeed;
-        sprintSpeed = playerSpeed * 2;
+        sprintSpeed = playerSpeed * 3;
         currentJPFuel = maxJPFuel;
+        runFuelText.text = "";
+        jetFuelText.text = "";
     }
 
     void Update()
@@ -68,6 +74,8 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+
+        setText();
     }
 
     private void FixedUpdate()
@@ -77,7 +85,7 @@ public class PlayerController : MonoBehaviour
             currentRunFuel -= Time.deltaTime;
             playerSpeed = sprintSpeed;
         }
-        else if (!Input.GetKey(KeyCode.LeftShift))
+        else if (!Input.GetKey(KeyCode.LeftShift) || currentRunFuel < 0f)
         {
             playerSpeed = normalSpeed;
         }
@@ -91,6 +99,10 @@ public class PlayerController : MonoBehaviour
         {
             currentJPFuel -= Time.deltaTime;
             playerVelocity.y += Mathf.Sqrt(.005f * -3.0f * gravityValue);
+        }   
+        else if (!Input.GetKey("space") && hasJetpack && currentJPFuel < maxJPFuel)
+        {
+            currentJPFuel += Time.deltaTime/2.5f;
         }
 
         if (groundedPlayer && currentJPFuel < maxJPFuel)
@@ -117,12 +129,24 @@ public class PlayerController : MonoBehaviour
         {
             if (currentJPFuel < maxJPFuel)
             {
-                currentJPFuel += .05f;
+                currentJPFuel += .35f;
             }
             if (currentRunFuel < maxRunFuel)
             {
-                currentRunFuel += .05f;
+                currentRunFuel += .45f;
             }
+        }
+    }
+
+    public void setText()
+    {
+        if (hasJetpack)
+        {
+            jetFuelText.text = "Jet Fuel: " + currentJPFuel.ToString();
+        }
+        if (hasRun)
+        {
+            runFuelText.text = "Boot Fuel: " + currentRunFuel.ToString();
         }
     }
 
