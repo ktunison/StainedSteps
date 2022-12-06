@@ -20,11 +20,11 @@ public class Player : MonoBehaviour
     public int fallDepth;
     private Vector3 spawnPos;
 
-    
+
     [SerializeField]
     private bool isGrounded;
     //private float distToGround = 1.1f;
-    
+
     [SerializeField]
     private int keyCount;
 
@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         //Move();
-        
+
         /*
         RaycastHit hit;
 
@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
             isGrounded = false;
         }
         */
-        
+
 
         if (transform.position.y < fallDepth)
         {
@@ -86,6 +86,13 @@ public class Player : MonoBehaviour
             pCont.enabled = false;
         }
         //StartCoroutine(Blink());
+    }
+
+    public void ManualRespawn()
+    {
+        GetComponent<CharacterController>().enabled = false;
+        gameObject.transform.position = spawnPos;
+        GetComponent<CharacterController>().enabled = true;
     }
 
     public void OnTriggerEnter(Collider other)
