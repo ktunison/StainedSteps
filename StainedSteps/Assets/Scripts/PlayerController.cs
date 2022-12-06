@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         inputManager = InputManager.Instance;
         cameraTransform = Camera.main.transform;
         normalSpeed = playerSpeed;
-        sprintSpeed = playerSpeed * 3;
+        sprintSpeed = playerSpeed * 2.5f;
         currentJPFuel = maxJPFuel;
         runFuelText.text = "";
         jetFuelText.text = "";
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         // Changes the height position of the player
         if (inputManager.PlayerJumpedThisFrame() && groundedPlayer)
         {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * -2f * gravityValue);
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
         {
             if (currentJPFuel < maxJPFuel)
             {
-                currentJPFuel += .35f;
+                currentJPFuel += .1f;
             }
             if (currentRunFuel < maxRunFuel)
             {
