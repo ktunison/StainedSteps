@@ -586,7 +586,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3244566752024108690, guid: 5a9bc4cb491767948a9012a8e8a41e48, type: 3}
       propertyPath: m_Name
-      value: Point
+      value: Check Point
       objectReference: {fileID: 0}
     - target: {fileID: 3244566752024108693, guid: 5a9bc4cb491767948a9012a8e8a41e48, type: 3}
       propertyPath: m_RootOrder
