@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public Text keyText;
     public Text gameOverText;
     public Text winText;
+    public Text requiredKeyText;
 
     public int fallDepth;
     private Vector3 spawnPos;
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
         winText.text = "";
         keyText.text = "";
         gameOverText.text = "";
+        requiredKeyText.text = "";
         pCont = GetComponent<PlayerController>();
     }
 
@@ -124,6 +126,11 @@ public class Player : MonoBehaviour
                 keyCount -= other.gameObject.GetComponent<Door>().requiredKeys;
                 keyText.text = "Keys: " + keyCount.ToString();
             }
+            else
+            {
+                int required = other.gameObject.GetComponent<Door>().requiredKeys - keyCount;
+                StartCoroutine(requiredKeyTimer(required));
+            }
         }
 
         if (other.tag == "Spike")
@@ -153,6 +160,14 @@ public class Player : MonoBehaviour
         {
             gameOverText.text = "GAME OVER";
         }
+    }
+
+    public IEnumerator requiredKeyTimer(int required)
+    {
+        Debug.Log("hey");
+        requiredKeyText.text = "Keys needed: " + required.ToString();
+        yield return new WaitForSeconds(2f);
+        requiredKeyText.text = "";
     }
 
     /*
