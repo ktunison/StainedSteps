@@ -122,6 +122,7 @@ public class Player : MonoBehaviour
             {
                 other.gameObject.SetActive(false);
                 keyCount -= other.gameObject.GetComponent<Door>().requiredKeys;
+                keyText.text = "Keys: " + keyCount.ToString();
             }
         }
 
@@ -135,6 +136,11 @@ public class Player : MonoBehaviour
             spawnPos = other.transform.position;
             other.gameObject.SetActive(false);
             //Respawn();
+        }
+
+        if (other.tag == "MovObj")
+        {
+            Respawn();
         }
     }
 

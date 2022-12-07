@@ -18,6 +18,7 @@ TagManager:
   - Spike
   - Run
   - CheckPoint
+  - MovObj
   layers:
   - Default
   - TransparentFX

@@ -16,7 +16,6 @@ public class MovingPlatform : MonoBehaviour
     public bool goingLeft;
     public bool goingBack;
     public bool goingX;
-    public bool goingUp;
 
     // use interpolation for better movement
     //public Vector3 p01;
