@@ -19,6 +19,7 @@ TagManager:
   - Run
   - CheckPoint
   - MovObj
+  - Infinity Coin
   layers:
   - Default
   - TransparentFX

@@ -136,6 +136,13 @@ public class PlayerController : MonoBehaviour
                 currentRunFuel += .45f;
             }
         }
+
+        if (other.tag == "Infinity Coin")
+        {
+            other.gameObject.SetActive(false);
+            maxJPFuel = 15f;
+            currentJPFuel = 15f;
+        }
     }
 
     public void setText()
