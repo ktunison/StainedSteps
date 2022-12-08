@@ -105,8 +105,9 @@ public class Player : MonoBehaviour
             CoinCount++;
             setCountText();
 
-            if (CoinCount <= 50)
+            if (CoinCount >= 30)
             {
+                CoinCount -= 40;
                 lives++;
             }
         }
