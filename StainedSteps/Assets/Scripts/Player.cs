@@ -159,7 +159,7 @@ public class Player : MonoBehaviour
 
     public void setCountText()
     {
-        coinsText.text = "Coins: " + CoinCount.ToString();
+        coinsText.text = "Fuel: " + CoinCount.ToString();
         livesText.text = "lives: " + lives.ToString();
 
         if (lives <= 0)
@@ -171,7 +171,7 @@ public class Player : MonoBehaviour
     public IEnumerator requiredKeyTimer(int required)
     {
         Debug.Log("hey");
-        requiredKeyText.text = "Keys needed: " + required.ToString();
+        requiredKeyText.text = "More Keys needed: " + required.ToString();
         yield return new WaitForSeconds(2f);
         requiredKeyText.text = "";
     }
