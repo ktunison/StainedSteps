@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 {
     //private Vector3 inputMovement;
 
-    private int lives = 3;
+    private int lives = 6;
     public Text livesText;
     private float CoinCount = 0;
     public Text coinsText;
@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
 
             if (CoinCount >= 30)
             {
-                CoinCount -= 40;
+                CoinCount -= 30;
                 lives++;
             }
         }
