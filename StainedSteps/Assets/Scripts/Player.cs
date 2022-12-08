@@ -104,6 +104,11 @@ public class Player : MonoBehaviour
             other.gameObject.SetActive(false);
             CoinCount++;
             setCountText();
+
+            if (CoinCount <= 50)
+            {
+                lives++;
+            }
         }
 
         if (other.tag == "Exit")
