@@ -4349,6 +4349,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: portal
       objectReference: {fileID: 0}
+    - target: {fileID: 5486282731913138779, guid: a06720d6b610cbb4da2c6560b78e5bfd, type: 3}
+      propertyPath: m_TagString
+      value: Win
+      objectReference: {fileID: 0}
     - target: {fileID: 5486282731913138791, guid: a06720d6b610cbb4da2c6560b78e5bfd, type: 3}
       propertyPath: m_RootOrder
       value: 1

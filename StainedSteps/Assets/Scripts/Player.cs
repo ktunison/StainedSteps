@@ -155,6 +155,13 @@ public class Player : MonoBehaviour
         {
             Respawn();
         }
+
+        if (other.tag == "Win")
+        {
+            winText.text = "You Win!!";
+            this.enabled = false;
+            pCont.enabled = false;
+        }
     }
 
     public void setCountText()
